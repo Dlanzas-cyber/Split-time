@@ -33,11 +33,11 @@ def split_time(start_str, end_str, cuts=1, overlap_minutes=0):
     return result
 
 st.title("🕐 Split-Time App")
-st.write("Divide um periodo de tempo en periodos iguais, com ou sem sobreposição.")
+st.write("Divide um periodo de tempo em periodos iguais, com ou sem sobreposição.")
 
 col1, col2 = st.columns(2)
 with col1:
-    start_time = st.time_input("Hora de inicio", value=datetime.strptime("23:00", "%H:%M").time())
+    start_time = st.time_input("Hora de inicio", value=datetime.strptime("00:00", "%H:%M").time())
 with col2:
     end_time = st.time_input("Hora de fim", value=datetime.strptime("07:30", "%H:%M").time())
 
