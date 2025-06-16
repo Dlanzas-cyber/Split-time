@@ -1,6 +1,8 @@
 import streamlit as st
 from datetime import datetime, timedelta
 
+st.set_page_config(page_title="Split-Time App", page_icon="icon.png")
+
 def split_time(start_str, end_str, cuts=1, overlap_minutes=0):
     start = datetime.strptime(start_str, "%H:%M")
     end = datetime.strptime(end_str, "%H:%M")
