@@ -7,9 +7,9 @@ def split_time(start_str, end_str, cuts=1, overlap_minutes=0):
     total_duration = (end - start).total_seconds() / 60
 
     if total_duration <= 0:
-        raise ValueError("La hora de fin debe ser posterior a la hora de inicio.")
+        raise ValueError("A hora de fim deve inferior à hora de inicio.")
     if cuts < 1:
-        raise ValueError("Debe haber al menos un corte.")
+        raise ValueError("Deve haver pelo menos um corte.")
 
     periods = cuts + 1
     result = []
@@ -33,20 +33,20 @@ def split_time(start_str, end_str, cuts=1, overlap_minutes=0):
     return result
 
 st.title("🕐 Split-Time App")
-st.write("Divide un rango de tiempo en periodos iguales, con o sin sobreposición.")
+st.write("Divide um periodo de tempo en periodos iguais, com ou sem sobreposição.")
 
 col1, col2 = st.columns(2)
 with col1:
-    start_time = st.time_input("Hora de inicio", value=datetime.strptime("01:15", "%H:%M").time())
+    start_time = st.time_input("Hora de inicio", value=datetime.strptime("23:00", "%H:%M").time())
 with col2:
-    end_time = st.time_input("Hora de fin", value=datetime.strptime("07:15", "%H:%M").time())
+    end_time = st.time_input("Hora de fim", value=datetime.strptime("07:30", "%H:%M").time())
 
 cuts = st.number_input("Número de cortes", min_value=1, value=1)
 
-overlap_enabled = st.checkbox("¿Quieres sobreposición?")
+overlap_enabled = st.checkbox("¿Queres sobreposição?")
 overlap_minutes = 0
 if overlap_enabled:
-    overlap_minutes = st.slider("Minutos de sobreposición", 1, 120, 15)
+    overlap_minutes = st.slider("Minutos de sobreposição", 1, 120, 15)
 
 if st.button("Calcular"):
     try:
@@ -54,8 +54,8 @@ if st.button("Calcular"):
         end_str = end_time.strftime("%H:%M")
         blocks = split_time(start_str, end_str, cuts, overlap_minutes if overlap_enabled else 0)
 
-        st.subheader("📋 Periodos generados:")
+        st.subheader("📋 Periodos gerados:")
         for i, (ini, fin) in enumerate(blocks, 1):
             st.write(f"**Periodo {i}:** {ini} - {fin}")
     except Exception as e:
-        st.error(f"Ocurrió un error: {e}")
+        st.error(f"Ocurrió um error: {e}")
